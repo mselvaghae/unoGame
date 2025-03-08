@@ -60,10 +60,12 @@ Frontend :
 ```bash
 ng serve
 ```
+---
 ## ✅ **Utilisation**
 - Lancez le serveur backend Colyseus
 - Ouvrez le navigateur à l'adresse http://localhost:4200
 - Rejoignez une partie et commencez à jouer !
+---
 ## 📂 **Structure du Projet**
 ```text
 
@@ -83,11 +85,20 @@ ng serve
 ├── README.md
 
 ```
+---
+
 ## 🏆 **Améliorations Futures**
 ✅ Améliorer la gestion des erreurs en temps réel
 ✅ Ajouter des animations et effets sonores
-✅ Implémenter un mode spectateur
-Request
+✅ Implémenter un mode spectateur Request
+
+---
+
 ## 🪪 **Licence**
 Ce projet est sous licence MIT – voir le fichier LICENSE pour plus de détails.
 
+---
+
+## 🔗 **Suivi du travail (Day-by-Day)**
+Vous pouvez suivre le travail au jour le jour sur le dépôt GitLab en suivant ce lien :  
+➡️ [Voir le suivi sur GitLab](https://gitlab.com/groupe-uno)
