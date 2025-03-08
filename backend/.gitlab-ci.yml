@@ -1,0 +1,37 @@
+image: node
+
+stages:
+  - lint
+  - build
+  - deploy
+
+eslint:
+  stage: lint
+  script:
+    - npm i eslint
+    - npx eslint . --fix 
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH  
+    - when: on_success  
+
+build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:v1.23.2-debug
+    entrypoint: [""]
+  script:
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}:1.1.0"
+
+# Commentaires pour un futur stage de build Docker classique
+# build:
+#   stage: build
+#   image: docker:latest
+#   services:
+#     - docker:19.03.12-dind # Docker-in-Docker pour pouvoir exécuter des commandes Docker dans le job
+#   script:
+#     - docker build --no-cache -t mon-app .
+#   rules:
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH

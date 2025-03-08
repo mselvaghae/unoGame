@@ -1,0 +1,32 @@
+image: node:18
+
+stages:
+  - lint
+  - build
+  - deploy
+
+eslint:
+  image: node:18
+  stage: lint
+  before_script:
+    - npm install -g @angular/cli
+    - npm install
+  script:
+    - npm install --save-dev @angular-eslint/builder @angular-eslint/schematics @angular-eslint/eslint-plugin @angular-eslint/template-parser
+    - npm install -g @angular/cli
+    - ng add @angular-eslint/schematics --skip-confirmation
+    - ng lint --fix  || true
+  only:
+    - branches
+
+build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:v1.23.2-debug
+    entrypoint: [""]
+  script:
+    - /kaniko/executor 
+      --context="${CI_PROJECT_DIR}" 
+      --dockerfile="${CI_PROJECT_DIR}/Dockerfile" 
+      --destination="${CI_REGISTRY_IMAGE}:1.1.1" 
+      --custom-platform=linux/arm64

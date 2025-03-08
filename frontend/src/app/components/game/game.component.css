@@ -1,0 +1,166 @@
+.game-container {
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: radial-gradient(circle, #FF5733, #FFC300, #28A745, #3498fB);
+  background-size: 300% 300%;
+  animation: gradient-animation 10s infinite;
+  color: white; 
+  padding: 20px;
+  font-family: 'Arial', sans-serif; 
+  }
+    
+  .player {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .top-player {
+    position: absolute;
+    top:5%;
+    left:50%;
+    transform:translateX(-50%);
+  }
+  .right-player {
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .left-player {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%) rotate(-90deg);
+  }
+  .cards-placeholder {
+    display: flex;
+  }
+  .buttom-player {
+    position: absolute;
+    bottom:2%;
+    left :50%;
+    transform: translateX(-50%);
+  }
+  
+  .card-back {
+    width: 100px;
+    height: 120px;
+    margin: 8px;
+  }
+  
+  .current-card {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .player-hand {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cards {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 90px;
+    height: 110px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.2);
+  }
+
+  .current-card {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute; 
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+  }
+  
+  .current-card .card-image {
+    width: 120px; 
+    height: 210px; 
+    transition: transform 0.3s ease; 
+  }
+  
+  .current-card .card-image:hover {
+    transform: scale(1.1); 
+  }
+  
+  .game-frame {
+    border: 30px solid black; 
+    border-radius: 10px; 
+  }
+
+  .room-chat {
+    position: relative;
+    width: 80px;
+    height:70px;
+    left: 40%;
+    margin-bottom:3%;
+  }
+
+  .img-chat {
+    opacity:0.5;
+  }
+
+  .leave-room {
+    position: relative;
+    right:45%;
+    top:0%;
+  }
+
+
+  .name-joeurs {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ded1d1;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .leave-room {
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    cursor: pointer;
+  }
+  
+  .leave-room img {
+    width: 80px;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .leave-room img:hover {
+    transform: scale(1.1);
+  }
+  
+
+  @keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }

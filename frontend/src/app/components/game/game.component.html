@@ -1,0 +1,45 @@
+<div class="game-frame">
+  <div class="game-container">
+    <!-- Zone des autres joueurs -->
+    <div class="other-players">
+      <div class="player" *ngFor="let player of Players; let i = index" [ngClass]="getPositionClass(i)">
+        <h3 class="name-joeurs">
+           {{ player.name }}
+        </h3>        
+        <div class="cards-placeholder">
+          <img *ngFor="let card of player.hand" src="assets/card_back.png" tabindex="0" class="card-back" alt="Carte dos">
+        </div>
+      </div>
+    </div>
+
+    <!-- Zone de la carte actuelle (au centre) -->
+    <div class="current-card">
+      <div>
+        <img src="assets/card_back.png" (click)="piocheCard()" (keydown.enter)="piocheCard()" tabindex="0" class="card-image" alt="Carte actuelle">
+      </div>
+      <div>
+        <img src="assets/8/2.png" class="card-image" tabindex="0" alt="Carte actuelle">
+      </div>
+    </div>
+
+    <!-- Zone des cartes du joueur actuel (en bas)-->
+    <div class="player-hand bottom-player">
+      <div class="cards">
+        <img 
+          *ngFor="let card of currentPlayer?.hand" 
+          [src]="getCardImagePath(card)" 
+          (click)="playCard(card)" 
+          class="card" 
+          [alt]="'Carte ' + card.value + ' ' + card.color">
+      </div>
+    </div>
+    
+    
+    <div class="room-chat">
+      <button class="button-chat"> Messagerie</button>
+    </div>
+    <div class="leave-room">
+      <img src="./assets/exit-door.png" (click)="leaveRoom()" (keydown.enter)="leaveRoom()" tabindex="0"  alt="">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-500 via-pink-500 to-yellow-500 flex flex-col items-center justify-center text-white">
+  <img src="./assets/UNO.ico" alt="" class="w-32 md:w-48 mb-6">
+  <h1 class="text-4xl md:text-6xl font-bold mb-8">Bienvenue à UNO!</h1>
+  <p *ngIf="!join && !create" class="text-lg md:text-2xl mb-6 text-center max-w-xl">
+    Créez ou rejoignez vos amis pour une partie excitante de UNO. Qui sera le champion ?
+  </p>
+
+  <p *ngIf="showInputField === 'join' && join" class="text-lg md:text-2xl mb-6 text-center max-w-xl">
+      vous serez redireger ves le jeu une fois que la room soit complete !
+  </p>
+
+  <p *ngIf="showInputField === 'create' && create" class="text-lg md:text-2xl mb-6 text-center max-w-xl">
+    partager la room avec vos amis ! <br> vous serez redireger vers la salle de jeu une fois que la salle soit complete
+</p>
+  
+  <div *ngIf="!showInputField && !join"  class="flex space-x-4">
+    <button 
+      class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition"
+      (click)="showInputField = 'join'">
+      Rejoindre une partie
+    </button>
+    <button 
+      class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition"
+      (click)="showInputField = 'create'">
+      Créer une partie
+    </button>
+  </div>
+
+  <!-- Affichage des champs d'entrée pour rejoindre une salle -->
+  <div *ngIf="showInputField === 'join' && !join" class="mt-4">
+    <div>
+      <input
+      type="text"
+      placeholder="Votre nom"
+      [(ngModel)]="playerName"
+      class="border rounded p-2 text-black bg-white mb-4"
+    />
+    </div>
+    <div>
+      <input
+      type="text"
+      placeholder="Entrez l'ID de la salle"
+      [(ngModel)]="roomId"
+      class="border rounded p-2 text-black bg-white mb-4"
+    />
+    </div> 
+    
+    <button *ngIf="!join"  
+      class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition ml-2"
+      (click)="joinRoom(playerName)">
+      Rejoindre
+    </button>
+  </div>
+  <!-- Affichage des champs d'entrée pour créer une salle -->
+  <div *ngIf="showInputField === 'create' && !create" class="mt-4">
+    <input
+      type="text"
+      placeholder="Votre nom"
+      [(ngModel)]="playerName"
+      class="border rounded p-2 text-black bg-white mb-4"
+    />
+    <button 
+      class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition ml-2"
+      (click)="createRoom(playerName)">
+      Créer une salle
+    </button>
+  </div>
+
+  <div *ngIf="idRoom" class="mt-6">
+    <div>
+      <p>Salle créée avec succès ! ID : {{ idRoom }}</p>
+    </div>
+    <div>
+      <button (click)="copyToClipboard()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition ml-2">Copier l'ID de la salle</button>
+    </div>
+    <input type="text" id="roomIdInput" [value]="idRoom" style="opacity: 0; position: absolute;">
+  </div>
+
+  <footer class="mt-10 text-sm opacity-75">
+    © 2024 UNO Game. Tous droits réservés.
+  </footer>
+</div>
